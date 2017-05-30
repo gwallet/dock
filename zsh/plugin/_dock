@@ -1,0 +1,3 @@
+#compdef dock
+
+_arguments "1: :(local $(ls ~/.dock) $(docker-machine ls -q))"

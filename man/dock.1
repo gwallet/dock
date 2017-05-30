@@ -1,0 +1,48 @@
+.Dd May 30, 2017
+.Dt DOCK 1
+.Sh NAME
+.Nm dock
+.Nd Docker(TM) docking facility
+.Sh SYNOPSIS
+.Nm
+.Nm
+.Op \- | Ar target
+.Sh DESCRIPTION
+.Nm
+helps you to communicate to a Docker machine listening daemon on any host.
+.Pp
+For hosts created via the docker-machine utility, it's an equivalent to
+.Qq eval $(docker-machine env TARGET)
+.Pp
+For other hosts, put the required export variables in ~/.dock/NAME_OF_THE_TARGET file and then run
+.Qq dock NAME_OF_THE_TARGET
+.Pp
+For setting back to default, use
+.Qq local
+or
+.Qq -
+as target.
+.Sh USAGE
+.Bl -bullet
+.It
+Get the current docking target
+.Dl % dock
+.It
+Set the docking target to TARGET
+.Dl % dock TARGET
+.It
+Unset the current docking target
+.Dl % dock -
+.It
+List all available targets (BASH, ZSH)
+.Dl % dock <TAB>
+.Sh FILES
+.Bl -bullet
+.It
+~/.dock/TARGET
+.Dl File containing the needed variable to export in order to make docker communicate with TARGET.
+.Sh AUTHOR
+.An "Guillaume Wallet" Aq wallet.guillaume@gmail.com
+.Sh SEE ALSO
+.Xr docker 1
+.Xr docker-machine 1
