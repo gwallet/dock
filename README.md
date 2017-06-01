@@ -1,6 +1,23 @@
 dock - [Docker™](https://www.docker.com/) docking facility
 ==========================================================
 
+Tired to `eval $(docker-machine env MyMachine)` ?
+
+Let's try `$ dock MyMachine`
+
+> What if _MyMachine_ has net been created with Docker Machine ?
+
+Let's assume that `1.2.3.4` is the IP address of the targeted Docker host, put the following in `~/.dock/MyMachine` ... :
+```
+export DOCKER_MACHINE_NAME="MyMachine"
+export DOCKER_HOST="tcp://1.2.3.4:2375"
+```
+... then :
+```
+$ dock MyMachine
+```
+Enjoy!
+
 Download
 --------
 
