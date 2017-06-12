@@ -38,7 +38,7 @@ _dock() {
     local cur machines
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
-    machines="local $(ls ~/.dock) $(docker-machine ls -q)"
+    machines="local $([ -d ~/.dock ] && ls ~/.dock) $(docker-machine ls -q)"
     COMPREPLY=( $(compgen -W "${machines}" -- ${cur}) )
 }
 complete -F _dock dock
