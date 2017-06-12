@@ -44,8 +44,8 @@ $ ln -s /opt/dock/man/dock.1 dock.1
 
 ### Bash
 
-1. cd /path/to/etc/bash_completion.d
-1. ln -s /path/to/dock/bash/completion/dock dock
+1. `cd /path/to/etc/bash_completion.d`
+1. `ln -s /path/to/dock/bash/completion/dock dock`
 
 Example:
 
@@ -56,14 +56,19 @@ $ ln -s /opt/dock/bash/completion/dock dock
 
 ### Oh My ZSH!
 
-1. cd ~/.oh-my-zsh/custom/plugins
-1. ln -s /path/to/dock/zsh/plugin dock
+1. `cd ~/.oh-my-zsh/custom/plugins`
+1. `ln -s /path/to/dock/zsh/plugin dock`
+1. edit `~/.zshrc` and activate the plugin *dock*
 
 Example:
 
 ```
 $ cd ~/.oh-my-zsh/custom/plugins
 $ ln -s /opt/dock/zsh/plugin dock
+$ vi ~/.zshrc
+[...]
+plugins=([...] dock)
+[...]
 ```
 
 ### Restart Your Shell
