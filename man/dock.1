@@ -12,35 +12,72 @@
 helps you to communicate to a Docker machine listening daemon on any host.
 .Pp
 For hosts created via the docker-machine utility, it's an equivalent to
-.Qq eval $(docker-machine env TARGET)
+.D1 % eval $( Ic docker-machine Li env Ar TARGET )
 .Pp
-For other hosts, put the required export variables in ~/.dock/NAME_OF_THE_TARGET file and then run
-.Qq dock NAME_OF_THE_TARGET
+For other hosts, put the required export variables in
+.Pa ~/.dock/NAME_OF_THE_TARGET
+file and then run:
+.D1 % dock NAME_OF_THE_TARGET
 .Pp
 For setting back to default, use
 .Qq local
 or
 .Qq -
 as target.
-.Sh USAGE
-.Bl -bullet
+.Sh ENVIRONMENT
+.Nm
+manages the following enviromnent variables:
+.Bl -item
 .It
-Get the current docking target
+.Ev DOCKER_HOST Ta The docker host URL
+.Po
+.Qq tcp://machine.domain.tld:2375
+or
+.Qq unix:///var/run/docker.sock
+.Pc .
+.It
+.Ev DOCKER_MACHINE_NAME Ta The docker machine name
+.Po
+.Qq machine.domain.tld
+or
+.Qq local
+.Pc .
+.It
+.Ev DOCKER_TLS_VERIFY Ta Should docker use encrypted communication channel
+.Po
+.Qq 1
+means yes
+.Pc .
+.It
+.Ev DOCKER_CERT_PATH Ta Path to the certificates when Em DOCKER_TLS_VERIFY="1" .
+.El
+.Sh FILES
+.Bl -item
+.It
+.Pa ~/.dock/TARGET
+.D1 File containing the needed variables to export in order to make docker communicate with Ar TARGET .
+.El
+.Sh USAGE
+.Bl -item
+.It
+To get the current docking target:
 .Dl % dock
 .It
-Set the docking target to TARGET
-.Dl % dock TARGET
+To set
+.Ar TARGET
+as the docking target:
+.D1 % dock Ar TARGET
 .It
-Unset the current docking target
-.Dl % dock -
+To unset the current docking target:
+.D1 % dock -
+or
+.D1 % dock local
 .It
-List all available targets (BASH, ZSH)
-.Dl % dock <TAB>
-.Sh FILES
-.Bl -bullet
-.It
-~/.dock/TARGET
-.Dl File containing the needed variable to export in order to make docker communicate with TARGET.
+To list all available targets: (available for BASH and ZSH only)
+.D1 % dock Aq TAB
+.El
+.Sh DIAGNOSTICS
+.Ex -std
 .Sh AUTHOR
 .An "Guillaume Wallet" Aq wallet.guillaume@gmail.com
 .Sh SEE ALSO
