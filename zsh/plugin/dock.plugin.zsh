@@ -25,6 +25,9 @@ function dock() {
       return 0
     elif [ -f ~/.dock/$1 ]; then
       source ~/.dock/$1
+      if [ -z $DOCKER_MACHINE_NAME ]; then
+        export DOCKER_MACHINE_NAME=$(docker info --format '{{.Name}}')
+      fi
       return 0
     else
       if [ $(docker-machine ip $1) ]; then
