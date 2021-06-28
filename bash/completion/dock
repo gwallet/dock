@@ -27,7 +27,7 @@ dock() {
       fi
       return 0
     else
-      if [ $(docker-machine ip $1) ]; then
+      if [ $(command -v docker-machine && docker-machine ip $1) ]; then
         eval $(docker-machine env $1)
         return 0
       else
@@ -41,7 +41,7 @@ _dock() {
     local cur machines
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
-    machines="local $([ -d ~/.dock ] && ls ~/.dock) $(docker-machine ls -q)"
+    machines="local $([ -d ~/.dock ] && ls ~/.dock) $(command -v docker-machine && docker-machine ls -q)"
     COMPREPLY=( $(compgen -W "${machines}" -- ${cur}) )
 }
 complete -F _dock dock

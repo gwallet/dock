@@ -30,7 +30,7 @@ function dock() {
       fi
       return 0
     else
-      if [ $(docker-machine ip $1) ]; then
+      if [ $(command -v docker-machine && docker-machine ip $1) ]; then
         eval $(docker-machine env $1)
         return 0
       else
